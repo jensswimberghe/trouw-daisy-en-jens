@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jens & Daisy — 04.09.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --citron: #f4c430;
+      --citron-deep: #e8a317;
+      --limone: #c5d96d;
+      --olive: #6b8e23;
+      --olive-deep: #4a6318;
+      --terracotta: #c95f3f;
+      --terracotta-deep: #a04527;
+      --cream: #fdf6e3;
+      --paper: #fff9ec;
+      --paper-warm: #fdf1d8;
+      --ink: #2d2416;
+      --ink-soft: #5a4a30;
+      --shadow: rgba(168, 124, 39, 0.18);
+      --shadow-deep: rgba(168, 124, 39, 0.32);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      color: var(--olive-deep);
+      letter-spacing: -0.01em;
+    }
+    a { color: inherit; }
+
+    /* ========================================
+       STICKY SIDE NAVIGATIE (desktop)
+       Verticale dots links — geen tabs meer
+       ======================================== */
+    .side-nav {
+      position: fixed;
+      left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .side-nav a {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid var(--olive);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .side-nav a::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--olive-deep);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      letter-spacing: 0.05em;
+    }
+    .side-nav a:hover {
+      background: var(--citron);
+      border-color: var(--citron-deep);
+      transform: scale(1.3);
+    }
+    .side-nav a:hover::before { opacity: 1; }
+    .side-nav a.active {
+      background: var(--terracotta);
+      border-color: var(--terracotta-deep);
+    }
+
+    /* ========================================
+       HERO — full screen
+       ======================================== */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(45, 36, 22, 0.3) 0%, rgba(45, 36, 22, 0.6) 100%),
+        url('header.jpg') center/cover no-repeat,
+        linear-gradient(135deg, #f4c430 0%, #e8a317 50%, #c95f3f 100%);
+      background-color: #e8a317;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Decoratieve hoek-ornamenten */
+    .hero-corner {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border: 1px solid var(--citron);
+      opacity: 0.6;
+    }
+    .hero-corner.tl { top: 30px; left: 30px; border-right: none; border-bottom: none; }
+    .hero-corner.tr { top: 30px; right: 30px; border-left: none; border-bottom: none; }
+    .hero-corner.bl { bottom: 30px; left: 30px; border-right: none; border-top: none; }
+    .hero-corner.br { bottom: 30px; right: 30px; border-left: none; border-top: none; }
+
+    .hero::before {
+      content: '🍋';
+      position: absolute;
+      top: 12%;
+      left: 12%;
+      font-size: 2.5rem;
+      transform: rotate(-25deg);
+      opacity: 0.75;
+      animation: sway 6s ease-in-out infinite;
+    }
+    .hero::after {
+      content: '🍋';
+      position: absolute;
+      bottom: 15%;
+      right: 12%;
+      font-size: 2.5rem;
+      transform: rotate(20deg);
+      opacity: 0.75;
+      animation: sway 6s ease-in-out infinite reverse;
+    }
+    @keyframes sway {
+      0%, 100% { transform: rotate(-25deg) translateY(0); }
+      50% { transform: rotate(-15deg) translateY(-10px); }
+    }
+    .hero-content {
+      animation: fadeInScale 1.8s ease-out;
+      max-width: 800px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+      color: var(--citron);
+    }
+    .hero h1 {
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      color: var(--paper);
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 .amp {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--citron);
+      font-weight: 400;
+      padding: 0 0.4rem;
+    }
+    .hero-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.2em;
+      margin-top: 1.8rem;
+      font-weight: 500;
+    }
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem auto;
+      max-width: 350px;
+    }
+    .hero-divider .line { flex: 1; height: 1px; background: var(--citron); }
+    .hero-divider .dot { width: 6px; height: 6px; background: var(--citron); border-radius: 50%; }
+
+    .countdown {
+      margin-top: 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      letter-spacing: 0.05em;
+    }
+    .countdown-numbers { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; }
+    .countdown-unit { text-align: center; min-width: 60px; }
+    .countdown-unit .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--citron);
+      display: block;
+      line-height: 1;
+    }
+    .countdown-unit .label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-top: 0.4rem;
+      opacity: 0.85;
+    }
+    .scroll-cue {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--citron);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2.5s ease-in-out infinite;
+      opacity: 0.85;
+    }
+    .scroll-cue::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 30px;
+      background: var(--citron);
+      margin: 0.7rem auto 0;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ========================================
+       SECTION BASE
+       ======================================== */
+    section.story-section {
+      padding: 7rem 2rem;
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--terracotta);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .section-title {
+      font-size: clamp(2.5rem, 5.5vw, 4rem);
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .section-title .italic {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--terracotta);
+    }
+    .section-lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      font-style: italic;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    /* ========================================
+       SECTIE: WELCOME — asymmetrische split
+       ======================================== */
+    .welcome {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .welcome-text { padding-right: 1rem; }
+    .welcome-text h2 { text-align: left; }
+    .welcome-text .section-lead { text-align: left; }
+
+    .welcome-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 2px;
+      box-shadow: 0 20px 50px var(--shadow);
+      position: relative;
+      border-left: 4px solid var(--citron);
+    }
+    .welcome-card::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: 20px;
+      bottom: 20px;
+      border: 1px solid var(--citron);
+      z-index: -1;
+      border-radius: 2px;
+    }
+    .welcome-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      font-style: italic;
+      font-weight: 500;
+    }
+    .welcome-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+    }
+
+    /* ========================================
+       SECTIE: COUNTDOWN STRIP (visueel breker)
+       ======================================== */
+    .strip {
+      background: var(--olive-deep);
+      color: var(--paper);
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .strip::before, .strip::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30%;
+      height: 1px;
+      background: var(--citron);
+      opacity: 0.4;
+    }
+    .strip::before { left: 5%; }
+    .strip::after { right: 5%; }
+    .strip-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    .strip-attribution {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--citron);
+    }
+
+    /* ========================================
+       SECTIE: PROGRAMMA — horizontal cards
+       Geen verticale timeline meer
+       ======================================== */
+    .program-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+    .program-intro h2 { text-align: center; }
+    .program-intro .section-lead { margin-left: auto; margin-right: auto; text-align: center; }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      position: relative;
+    }
+    /* Verbindingslijn tussen kaarten */
+    .program-grid::before {
+      content: '';
+      position: absolute;
+      top: 50px;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--citron) 20%, var(--citron) 80%, transparent);
+      z-index: 0;
+    }
+    .program-card {
+      background: white;
+      padding: 2rem 1.5rem;
+      border-radius: 2px;
+      box-shadow: 0 8px 30px var(--shadow);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .program-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px var(--shadow-deep);
+    }
+    .program-card .time-badge {
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      background: linear-gradient(135deg, var(--olive) 0%, var(--olive-deep) 100%);
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 6px 15px rgba(74, 99, 24, 0.3);
+      border: 3px solid var(--paper);
+    }
+    .program-card .activity {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--olive-deep);
+      margin-bottom: 0.5rem;
+    }
+    .program-card .description {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--ink-soft);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* ========================================
+       SECTIE: LOCATIE — split layout, map links
+       ======================================== */
+    .locatie-section {
+      background: var(--paper-warm);
+      max-width: none;
+    }
+    .locatie-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .locatie-map {
+      position: relative;
+    }
+    .locatie-map iframe {
+      width: 100%;
+      height: 450px;
+      border: 0;
+      border-radius: 2px;
+      box-shadow: 0 12px 40px var(--shadow-deep);
+      display: block;
+    }
+    .locatie-map::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      border: 1px solid var(--citron);
+      z-index: -1;
+      border-radius: 2px;
+    }
+    .locatie-details h2 { text-align: left; }
+    .locatie-details .section-lead { text-align: left; }
+    .locatie-card {
+      background: white;
+      padding: 2rem;
+      margin-top: 1.5rem;
+      border-radius: 2px;
+      border-top: 3px solid var(--citron);
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+    .locatie-card .venue {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--olive-deep);
+      margin-bottom: 0.5rem;
+    }
+    .locatie-card .address {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--ink-soft);
+      margin-bottom: 0.3rem;
+    }
+    .locatie-card .parking {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: var(--ink-soft);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .locatie-card a {
+      display: inline-block;
+      color: var(--terracotta);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--citron);
+      padding-bottom: 2px;
+      transition: color 0.3s;
+    }
+    .locatie-card a:hover { color: var(--terracotta-deep); }
+    .dresscode-pill {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--citron) 0%, var(--citron-deep) 100%);
+      color: white;
+      padding: 1.2rem 2rem;
+      border-radius: 50px;
+      margin-top: 2rem;
+      box-shadow: 0 6px 20px rgba(232, 163, 23, 0.35);
+    }
+    .dresscode-pill .label {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.95;
+      margin-bottom: 0.2rem;
+      display: block;
+    }
+    .dresscode-pill .value {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+
+    /* ========================================
+       SECTIE: RSVP — gecentreerd, kader
+       ======================================== */
+    .rsvp-section { max-width: 800px; margin: 0 auto; }
+    .rsvp-section h2 { text-align: center; }
+    .rsvp-section > .section-tag { text-align: center; }
+    .rsvp-section .section-lead {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 3rem;
+    }
+
+    .rsvp-form {
+      background: white;
+      padding: 3rem 2.5rem;
+      border-radius: 2px;
+      box-shadow: 0 15px 50px var(--shadow);
+      position: relative;
+    }
+    .rsvp-form::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border: 1px solid var(--citron);
+      pointer-events: none;
+      border-radius: 2px;
+    }
+    /* Veld groep — NIET meer fieldset/legend */
+    .field-group { margin-bottom: 1.8rem; position: relative; }
+    .field-label {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      color: var(--olive-deep);
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .field-label::after {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: var(--citron);
+      margin-top: 0.5rem;
+    }
+    input[type="text"], input[type="email"], input[type="number"], textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid #e4d9bc;
+      border-radius: 2px;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--citron-deep);
+      background: white;
+    }
+    .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 0.7rem; }
+    .radio-row, .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      color: var(--ink);
+      font-size: 1rem;
+    }
+    .radio-row input[type="radio"], .checkbox-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--terracotta);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .number-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .number-row .num-label { flex: 1; font-size: 1rem; }
+    .number-row input[type="number"] { width: 80px; text-align: center; }
+    .helper-text {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      font-style: italic;
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+    button.submit-btn {
+      width: 100%;
+      padding: 1.2rem;
+      background: var(--terracotta);
+      color: white;
+      border: none;
+      border-radius: 2px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1.5rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    button.submit-btn:hover {
+      background: var(--terracotta-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(201, 95, 63, 0.4);
+    }
+    .aanwezig-extra {
+      animation: fadeIn 0.5s ease-out;
+      border-top: 1px dashed #e4d9bc;
+      padding-top: 1.8rem;
+      margin-top: 1.8rem;
+    }
+    .aanwezig-extra:first-of-type { border-top: 1px dashed #e4d9bc; }
+
+    /* ========================================
+       SECTIE: VERHAAL — minimal & elegant
+       ======================================== */
+    .verhaal-section {
+      background: var(--paper-warm);
+      max-width: none;
+    }
+    .verhaal-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .verhaal-inner h2 { text-align: center; }
+    .verhaal-inner > .section-tag { text-align: center; }
+    .verhaal-placeholder {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      font-style: italic;
+      padding: 2rem;
+      position: relative;
+    }
+    .verhaal-placeholder::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      color: var(--citron);
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      line-height: 1;
+      opacity: 0.4;
+    }
+    .verhaal-placeholder em {
+      display: block;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-style: normal;
+    }
+
+    /* ========================================
+       SECTIE: FOTOGALERIJ
+       ======================================== */
+    .gallery-section { text-align: center; }
+    .gallery-section h2 { text-align: center; }
+    .gallery-section > .section-tag { text-align: center; }
+    .gallery-section .section-lead {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .gallery-card {
+      background: white;
+      padding: 3rem 2.5rem;
+      border-radius: 2px;
+      box-shadow: 0 12px 40px var(--shadow);
+      max-width: 450px;
+      margin: 2rem auto 0;
+      position: relative;
+    }
+    .gallery-card::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      right: 15px;
+      bottom: 15px;
+      border: 1px solid var(--citron);
+      z-index: -1;
+    }
+    .qr-placeholder {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--citron) 0%, var(--citron-deep) 100%);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 6px 20px rgba(232, 163, 23, 0.4);
+    }
+    .gallery-link {
+      display: inline-block;
+      margin-top: 1.8rem;
+      font-weight: 600;
+      color: var(--terracotta);
+      text-decoration: none;
+      border-bottom: 2px solid var(--citron);
+      padding-bottom: 3px;
+      transition: color 0.3s;
+      letter-spacing: 0.05em;
+    }
+    .gallery-link:hover { color: var(--terracotta-deep); }
+
+    /* ========================================
+       SECTIE: CADEAUTIP — apart als breker
+       ======================================== */
+    .cadeau-section {
+      background: linear-gradient(135deg, var(--citron) 0%, var(--citron-deep) 100%);
+      color: white;
+      padding: 5rem 2rem;
+      text-align: center;
+      max-width: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .cadeau-section::before, .cadeau-section::after {
+      content: '🍋';
+      position: absolute;
+      font-size: 4rem;
+      opacity: 0.15;
+    }
+    .cadeau-section::before { top: 20px; left: 5%; transform: rotate(-20deg); }
+    .cadeau-section::after { bottom: 20px; right: 5%; transform: rotate(15deg); }
+    .cadeau-section h2 {
+      color: white;
+      font-style: italic;
+      font-weight: 500;
+    }
+    .cadeau-section .section-tag { color: rgba(255,255,255,0.85); }
+    .cadeau-section p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin: 0 auto 1rem;
+      font-style: italic;
+      line-height: 1.6;
+    }
+    .iban-display {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 1rem 2rem;
+      border-radius: 2px;
+      margin-top: 1.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      font-size: 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    /* ========================================
+       SECTIE: CONTACT — twee kolommen
+       ======================================== */
+    .contact-section { text-align: center; }
+    .contact-section h2 { text-align: center; }
+    .contact-section > .section-tag { text-align: center; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 700px;
+      margin: 3rem auto 0;
+    }
+    .contact-card {
+      background: white;
+      padding: 2.5rem 1.5rem;
+      border-radius: 2px;
+      box-shadow: 0 8px 30px var(--shadow);
+      text-align: center;
+      transition: transform 0.3s ease;
+      border-bottom: 3px solid var(--citron);
+    }
+    .contact-card:hover { transform: translateY(-5px); }
+    .contact-card .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--olive-deep);
+      margin-bottom: 1.2rem;
+    }
+    .contact-card a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      display: block;
+      padding: 0.4rem 0;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    .contact-card a:hover { color: var(--terracotta); }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    footer {
+      background: var(--olive-deep);
+      color: var(--paper);
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+    }
+    footer .footer-ornament { font-size: 1.5rem; margin-bottom: 1rem; color: var(--citron); }
+    footer .names {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    footer .date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      opacity: 0.85;
+      letter-spacing: 0.2em;
+    }
+
+    /* ========================================
+       MOBILE HAMBURGER (alleen kleine schermen)
+       ======================================== */
+    .hamburger {
+      display: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.7rem 0.9rem;
+      color: white;
+      background-color: var(--terracotta);
+      border-radius: 2px;
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 200;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+      border: none;
+    }
+    .hamburger:hover { background-color: var(--terracotta-deep); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; right: 0;
+      width: 260px;
+      height: 100vh;
+      background: var(--paper);
+      box-shadow: -4px 0 25px rgba(0, 0, 0, 0.15);
+      z-index: 150;
+      padding: 5rem 2rem 2rem;
+      border-left: 3px solid var(--citron);
+    }
+    .mobile-menu.show { display: flex; flex-direction: column; gap: 1.2rem; animation: slideInRight 0.3s ease-out; }
+    .mobile-menu a {
+      text-decoration: none;
+      color: var(--olive-deep);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #e4d9bc;
+      transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--terracotta); }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+
+    /* ========================================
+       ANIMATIES
+       ======================================== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 900px) {
+      .side-nav { display: none; }
+      .hamburger { display: block; }
+      .hero-corner { width: 50px; height: 50px; }
+      .hero-corner.tl, .hero-corner.tr { top: 20px; }
+      .hero-corner.bl, .hero-corner.br { bottom: 20px; }
+      .hero-corner.tl, .hero-corner.bl { left: 20px; }
+      .hero-corner.tr, .hero-corner.br { right: 20px; }
+      .hero::before, .hero::after { font-size: 2rem; }
+      .countdown-numbers { gap: 1rem; }
+      .countdown-unit .num { font-size: 1.7rem; }
+
+      section.story-section { padding: 5rem 1.5rem; }
+
+      .welcome { grid-template-columns: 1fr; gap: 2.5rem; }
+      .welcome-card::before { display: none; }
+
+      .program-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .program-grid::before { display: none; }
+      .program-card { padding: 1.5rem 1rem; }
+      .program-card .time-badge { width: 65px; height: 65px; line-height: 65px; font-size: 1.1rem; margin-bottom: 1rem; }
+
+      .locatie-section { padding: 5rem 1.5rem; }
+      .locatie-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .locatie-map iframe { height: 320px; }
+      .locatie-map::before { display: none; }
+
+      .rsvp-form { padding: 2rem 1.5rem; }
+      .rsvp-form::before { display: none; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; max-width: 400px; }
+
+      .gallery-card::before { display: none; }
+      .qr-placeholder { width: 180px; height: 180px; }
+    }
+    @media (max-width: 500px) {
+      .program-grid { grid-template-columns: 1fr; }
+      .verhaal-section, .cadeau-section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- DESKTOP SIDE NAV (dots) -->
+  <nav class="side-nav" id="sideNav">
+    <a href="#hero" data-label="Welkom" data-section="hero" class="active"></a>
+    <a href="#welcome" data-label="Onze dag" data-section="welcome"></a>
+    <a href="#programma" data-label="Programma" data-section="programma"></a>
+    <a href="#locatie" data-label="Locatie" data-section="locatie"></a>
+    <a href="#rsvp" data-label="RSVP" data-section="rsvp"></a>
+    <a href="#verhaal" data-label="Ons verhaal" data-section="verhaal"></a>
+    <a href="#fotogalerij" data-label="Foto's" data-section="fotogalerij"></a>
+    <a href="#cadeau" data-label="Cadeautip" data-section="cadeau"></a>
+    <a href="#contact" data-label="Contact" data-section="contact"></a>
+  </nav>
+
+  <!-- MOBILE HAMBURGER -->
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#welcome" onclick="closeMenu()">Onze dag</a>
+    <a href="#programma" onclick="closeMenu()">Programma</a>
+    <a href="#locatie" onclick="closeMenu()">Locatie</a>
+    <a href="#rsvp" onclick="closeMenu()">RSVP</a>
+    <a href="#verhaal" onclick="closeMenu()">Ons verhaal</a>
+    <a href="#fotogalerij" onclick="closeMenu()">Foto's</a>
+    <a href="#cadeau" onclick="closeMenu()">Cadeautip</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <span class="hero-corner tl"></span>
+    <span class="hero-corner tr"></span>
+    <span class="hero-corner bl"></span>
+    <span class="hero-corner br"></span>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Onze grote dag</div>
+      <h1>Jens <span class="amp">&</span> Daisy</h1>
+      <div class="hero-divider">
+        <span class="line"></span><span class="dot"></span><span class="line"></span>
+      </div>
+      <div class="hero-date">04 · 09 · 2026</div>
+      <div class="countdown" id="countdown">
+        <div>Aftellen tot we elkaar het ja-woord geven</div>
+        <div class="countdown-numbers" id="countdown-numbers"></div>
+      </div>
+    </div>
+    <div class="scroll-cue">Scroll</div>
+  </section>
+
+  <!-- WELCOME — asymmetrische split -->
+  <section class="story-section reveal" id="welcome">
+    <div class="welcome">
+      <div class="welcome-text">
+        <span class="section-tag">Benvenuti</span>
+        <h2 class="section-title">Welkom op<br><span class="italic">onze trouwsite</span></h2>
+        <p class="section-lead">
+          Het is bijna zover. Op 4 september 2026 zeggen we "ja" tegen elkaar
+          — onder de Vlaamse zon, met een vleugje <em>dolce vita</em>.
+        </p>
+        <p class="section-lead">
+          We zijn enorm blij om deze dag met jou te delen.
+          Op deze site vind je alle praktische info, ons programma,
+          en het belangrijkste: het RSVP-formulier om te laten weten dat je erbij bent.
+        </p>
+      </div>
+      <div class="welcome-card">
+        <h3>Wat staat er op het menu?</h3>
+        <p>
+          🍋 De praktische details van onze dag<br>
+          📍 Locatie en hoe je er geraakt<br>
+          💌 RSVP-formulier met je muziekwensen<br>
+          📸 Een plek om foto's te delen<br>
+          ☀️ De dresscode voor onze zonnige dag
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP — quote als visuele breker -->
+  <div class="strip reveal">
+    <div class="strip-quote">
+      "L'amore è la poesia dei sensi."
+    </div>
+  </div>
+
+  <!-- PROGRAMMA — horizontale kaarten zonder dots -->
+  <section class="story-section reveal" id="programma">
+    <div class="program-intro">
+      <span class="section-tag">Programma</span>
+      <h2 class="section-title">Het verloop<br><span class="italic">van de dag</span></h2>
+      <p class="section-lead">
+        Vier momenten om naar uit te kijken. Vanaf de plechtige "ja" tot de laatste dans.
+      </p>
+    </div>
+    <div class="program-grid">
+      <div class="program-card">
+        <div class="time-badge">17:00</div>
+        <div class="activity">We say "I do"</div>
+        <div class="description">Start van de ceremonie</div>
+      </div>
+      <div class="program-card">
+        <div class="time-badge">18:15</div>
+        <div class="activity">Cheers & Bites</div>
+        <div class="description">Receptie met aperitief</div>
+      </div>
+      <div class="program-card">
+        <div class="time-badge">19:00</div>
+        <div class="activity">Food & Drinks</div>
+        <div class="description">Aan tafel — tijd om te smullen</div>
+      </div>
+      <div class="program-card">
+        <div class="time-badge">21:00</div>
+        <div class="activity">Dance & Enjoy</div>
+        <div class="description">Openingsdans en feest tot in de kleine uurtjes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIE — split met map links -->
+  <section class="story-section locatie-section reveal" id="locatie">
+    <div class="locatie-inner">
+      <div class="locatie-map">
+        <iframe
+          src="https://www.google.com/maps?q=%27t+Hof+32,+Beselare&output=embed"
+          allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Locatie van 't Hof 32 in Beselare"></iframe>
+      </div>
+      <div class="locatie-details">
+        <h2 class="section-title">De locatie<br><span class="italic">'t Hof 32</span></h2>
+        <p class="section-lead">
+          We vieren onze liefde in 't Hof 32 in Beselare — een sfeervolle plek waar we
+          jullie graag verwelkomen voor een onvergetelijke dag.
+        </p>
+        <div class="locatie-card">
+          <div class="venue">'t Hof 32</div>
+          <div class="address">📍 't Hof 32, Beselare</div>
+          <div class="parking">Parkeren kan ter plaatse</div>
+          <a href="https://www.facebook.com/p/T-Hof-32-100077552336535/" target="_blank">
+            Meer info op Facebook →
+          </a>
+        </div>
+        <div class="dresscode-pill">
+          <span class="label">Dresscode</span>
+          <span class="value">Kleurrijk maar chique ☀️</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP — gecentreerd kader -->
+  <section class="story-section rsvp-section reveal" id="rsvp">
+    <span class="section-tag" style="display:block;text-align:center;">Save your seat</span>
+    <h2 class="section-title" style="text-align:center;">Laat ons weten<br><span class="italic">of je erbij bent</span></h2>
+    <p class="section-lead">
+      We zouden het fantastisch vinden als jij erbij bent op onze grote dag.
+      Vul hieronder het formulier in — en vergeet je favoriete nummers niet!
+    </p>
+
+    <form class="rsvp-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="VERVANG_DOOR_JOUW_WEB3FORMS_KEY">
+      <input type="hidden" name="subject" value="Nieuwe RSVP — Jens & Daisy">
+      <input type="hidden" name="from_name" value="RSVP Trouwsite Jens & Daisy">
+
+      <div class="field-group">
+        <label class="field-label" for="naam">Jouw naam</label>
+        <input type="text" id="naam" name="naam" placeholder="Voor- en achternaam" required />
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Aanwezigheid</label>
+        <div class="radio-group">
+          <label class="radio-row">
+            <input type="radio" name="aanwezigheid" value="ja" required>
+            <span>Ja, ik vier/wij vieren graag mee!</span>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="aanwezigheid" value="nee">
+            <span>Helaas, ik kan/wij kunnen er niet bij zijn</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field-group aanwezig-extra" style="display:none;">
+        <label class="field-label" for="volwassenen">Met hoeveel komen jullie?</label>
+        <div class="number-row">
+          <span class="num-label">Aantal volwassenen</span>
+          <input type="number" id="volwassenen" name="aantal_volwassenen" min="1" max="10" value="1">
+        </div>
+        <p class="helper-text">Kinderen vertrekken na de receptie en hoeven niet meegerekend te worden.</p>
+      </div>
+
+      <div class="field-group aanwezig-extra" style="display:none;">
+        <label class="field-label" for="email">E-mailadres</label>
+        <input type="email" id="email" name="email" placeholder="naam@voorbeeld.be" />
+        <p class="helper-text">Niet verplicht, maar handig als we nog iets willen laten weten.</p>
+      </div>
+
+      <div class="field-group aanwezig-extra" style="display:none;">
+        <label class="field-label">Drankvoorkeur</label>
+        <div class="checkbox-group">
+          <label class="checkbox-row"><input type="checkbox" name="drank[]" value="witte_wijn"><span>Witte wijn</span></label>
+          <label class="checkbox-row"><input type="checkbox" name="drank[]" value="rose"><span>Rosé</span></label>
+          <label class="checkbox-row"><input type="checkbox" name="drank[]" value="rode_wijn"><span>Rode wijn</span></label>
+          <label class="checkbox-row"><input type="checkbox" name="drank[]" value="bier"><span>Bier</span></label>
+          <label class="checkbox-row"><input type="checkbox" name="drank[]" value="frisdrank"><span>Frisdrank / geen alcohol</span></label>
+        </div>
+        <p class="helper-text">Meerdere mogelijk.</p>
+      </div>
+
+      <div class="field-group aanwezig-extra" style="display:none;">
+        <label class="field-label" for="favoriete_genre">Favoriete muziek 🎶</label>
+        <input type="text" id="favoriete_genre" name="favoriete_genre" placeholder="Favoriete genre (pop, latin, dance, rock, ...)" />
+        <textarea name="favoriete_nummers" rows="3" style="margin-top: 0.8rem;" placeholder="Welke nummers MOETEN we draaien op het feest?"></textarea>
+        <p class="helper-text">Hoe meer suggesties, hoe beter de dansvloer 💃</p>
+      </div>
+
+      <div class="field-group aanwezig-extra" style="display:none;">
+        <label class="field-label" for="dieet">Allergieën of dieetwensen</label>
+        <textarea id="dieet" name="dieet" rows="2" placeholder="Vegetarisch, vegan, allergieën, ..."></textarea>
+      </div>
+
+      <div class="field-group aanwezig-extra" style="display:none;">
+        <label class="field-label" for="boodschap">Boodschap voor het bruidspaar</label>
+        <textarea id="boodschap" name="boodschap" rows="3" placeholder="Een lieve boodschap, een tip, of iets dat we moeten weten..."></textarea>
+        <p class="helper-text">Optioneel — maar leuk!</p>
+      </div>
+
+      <button type="submit" class="submit-btn">Bevestigen</button>
+    </form>
+  </section>
+
+  <!-- VERHAAL -->
+  <section class="story-section verhaal-section reveal" id="verhaal">
+    <div class="verhaal-inner">
+      <span class="section-tag">La nostra storia</span>
+      <h2 class="section-title">Ons<br><span class="italic">verhaal</span></h2>
+      <div class="verhaal-placeholder">
+        Hier komt binnenkort ons verhaal. Hoe we elkaar leerden kennen,
+        de mooie momenten die ons hier brachten, en waarom we wisten dat het voor altijd is.
+        <em>Wordt vervolgd</em>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOTOGALERIJ -->
+  <section class="story-section gallery-section reveal" id="fotogalerij">
+    <span class="section-tag" style="display:block;">Memorie</span>
+    <h2 class="section-title">Herinneringen<br><span class="italic">delen</span></h2>
+    <p class="section-lead">
+      Heb jij mooie herinneringen of leuke foto's van onze dag?
+      Deel ze hier — alle foto's, gek of mooi, zijn welkom!
+    </p>
+    <div class="gallery-card">
+      <div class="qr-placeholder">
+        QR-code & link<br>volgen binnenkort
+      </div>
+      <a href="#" class="gallery-link" id="galerij-link">Upload jouw foto's 📷</a>
+    </div>
+  </section>
+
+  <!-- CADEAUTIP -->
+  <section class="cadeau-section reveal" id="cadeau">
+    <span class="section-tag">Un piccolo regalo</span>
+    <h2 class="section-title">Cadeautip</h2>
+    <p>Geen cadeaulijst, wel grote plannen voor onze toekomst samen.</p>
+    <p>Wie graag op voorhand wil bijdragen, kan dat via</p>
+    <div class="iban-display">IBAN: BE13 0019 0637 4039</div>
+    <p style="font-size: 1rem; margin-top: 1.5rem;">Ter plaatse kan natuurlijk ook 💛</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="story-section contact-section reveal" id="contact">
+    <span class="section-tag" style="display:block;">Contatto</span>
+    <h2 class="section-title">Vragen?<br><span class="italic">Laat het ons weten</span></h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="name">Jens</div>
+        <a href="mailto:jens.swimberghe@hotmail.com">📧 jens.swimberghe@hotmail.com</a>
+        <a href="tel:+32473324946">📞 0473 32 49 46</a>
+      </div>
+      <div class="contact-card">
+        <div class="name">Daisy</div>
+        <a href="mailto:daisydautricourt@hotmail.com">📧 daisydautricourt@hotmail.com</a>
+        <a href="tel:+32471344811">📞 0471 34 48 11</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-ornament">🍋 ☀ 🍋</div>
+    <div class="names">Jens & Daisy</div>
+    <div class="date">04 · 09 · 2026</div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('show');
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('show');
+    }
+    document.addEventListener('click', e => {
+      const menu = document.getElementById('mobileMenu');
+      const hamburger = document.querySelector('.hamburger');
+      if (menu && hamburger && !menu.contains(e.target) && !hamburger.contains(e.target)) {
+        menu.classList.remove('show');
+      }
+    });
+
+    // Countdown
+    const weddingDate = new Date("2026-09-04T17:00:00").getTime();
+    const countdownNumbers = document.getElementById("countdown-numbers");
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = Date.now();
+      const distance = weddingDate - now;
+      if (distance < 0) {
+        countdownEl.innerHTML = '<div style="font-size: 1.4rem;">Wij zijn getrouwd! 🥂</div>';
+        return;
+      }
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+      countdownNumbers.innerHTML =
+        '<div class="countdown-unit"><span class="num">' + days + '</span><span class="label">Dagen</span></div>' +
+        '<div class="countdown-unit"><span class="num">' + hours + '</span><span class="label">Uren</span></div>' +
+        '<div class="countdown-unit"><span class="num">' + minutes + '</span><span class="label">Min</span></div>' +
+        '<div class="countdown-unit"><span class="num">' + seconds + '</span><span class="label">Sec</span></div>';
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // RSVP extra fields toggle
+    const aanwezigJa = document.querySelector('input[name="aanwezigheid"][value="ja"]');
+    const aanwezigNee = document.querySelector('input[name="aanwezigheid"][value="nee"]');
+    const extraVelden = document.querySelectorAll('.aanwezig-extra');
+
+    function toonExtraVelden() { extraVelden.forEach(v => v.style.display = 'block'); }
+    function verbergExtraVelden() {
+      extraVelden.forEach(v => {
+        v.style.display = 'none';
+        v.querySelectorAll('input, textarea').forEach(el => {
+          if (el.type === 'checkbox' || el.type === 'radio') el.checked = false;
+          else if (el.type !== 'number') el.value = '';
+        });
+      });
+    }
+    if (aanwezigJa && aanwezigNee) {
+      aanwezigJa.addEventListener('change', toonExtraVelden);
+      aanwezigNee.addEventListener('change', verbergExtraVelden);
+    }
+
+    // Scroll reveal animations
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // Side nav active state
+    const sections = document.querySelectorAll('section[id], div.strip');
+    const navDots = document.querySelectorAll('.side-nav a');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navDots.forEach(dot => {
+            dot.classList.toggle('active', dot.dataset.section === id);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => { if (s.id) sectionObserver.observe(s); });
+  </script>
+</body>
+</html>
