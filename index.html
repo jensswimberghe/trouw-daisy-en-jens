@@ -100,8 +100,8 @@
       background:
         linear-gradient(180deg, rgba(45, 36, 22, 0.3) 0%, rgba(45, 36, 22, 0.6) 100%),
         url('header.jpg') center/cover no-repeat,
-        linear-gradient(135deg, #f4c430 0%, #e8a317 50%, #c95f3f 100%);
-      background-color: #e8a317;
+        linear-gradient(135deg, #f8d35e 0%, #f4c430 50%, #d97b52 100%);
+      background-color: #f4c430;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -130,20 +130,10 @@
       position: absolute;
       top: 12%;
       left: 12%;
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       transform: rotate(-25deg);
       opacity: 0.75;
       animation: sway 6s ease-in-out infinite;
-    }
-    .hero::after {
-      content: '🍋';
-      position: absolute;
-      bottom: 15%;
-      right: 12%;
-      font-size: 2.5rem;
-      transform: rotate(20deg);
-      opacity: 0.75;
-      animation: sway 6s ease-in-out infinite reverse;
     }
     @keyframes sway {
       0%, 100% { transform: rotate(-25deg) translateY(0); }
@@ -388,7 +378,7 @@
 
     .program-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       position: relative;
     }
@@ -973,7 +963,7 @@
       .hero-corner.bl, .hero-corner.br { bottom: 20px; }
       .hero-corner.tl, .hero-corner.bl { left: 20px; }
       .hero-corner.tr, .hero-corner.br { right: 20px; }
-      .hero::before, .hero::after { font-size: 2rem; }
+      .hero::before { font-size: 2.8rem; }
       .countdown-numbers { gap: 1rem; }
       .countdown-unit .num { font-size: 1.7rem; }
 
@@ -982,7 +972,7 @@
       .welcome { grid-template-columns: 1fr; gap: 2.5rem; }
       .welcome-card::before { display: none; }
 
-      .program-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .program-grid { grid-template-columns: 1fr; gap: 1rem; }
       .program-grid::before { display: none; }
       .program-card { padding: 1.5rem 1rem; }
       .program-card .time-badge { width: 65px; height: 65px; line-height: 65px; font-size: 1.1rem; margin-bottom: 1rem; }
@@ -1012,10 +1002,10 @@
   <nav class="side-nav" id="sideNav">
     <a href="#hero" data-label="Welkom" data-section="hero" class="active"></a>
     <a href="#welcome" data-label="Onze dag" data-section="welcome"></a>
+    <a href="#verhaal" data-label="Ons verhaal" data-section="verhaal"></a>
     <a href="#programma" data-label="Programma" data-section="programma"></a>
     <a href="#locatie" data-label="Locatie" data-section="locatie"></a>
     <a href="#rsvp" data-label="RSVP" data-section="rsvp"></a>
-    <a href="#verhaal" data-label="Ons verhaal" data-section="verhaal"></a>
     <a href="#fotogalerij" data-label="Foto's" data-section="fotogalerij"></a>
     <a href="#cadeau" data-label="Cadeautip" data-section="cadeau"></a>
     <a href="#contact" data-label="Contact" data-section="contact"></a>
@@ -1025,10 +1015,10 @@
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#welcome" onclick="closeMenu()">Onze dag</a>
+    <a href="#verhaal" onclick="closeMenu()">Ons verhaal</a>
     <a href="#programma" onclick="closeMenu()">Programma</a>
     <a href="#locatie" onclick="closeMenu()">Locatie</a>
     <a href="#rsvp" onclick="closeMenu()">RSVP</a>
-    <a href="#verhaal" onclick="closeMenu()">Ons verhaal</a>
     <a href="#fotogalerij" onclick="closeMenu()">Foto's</a>
     <a href="#cadeau" onclick="closeMenu()">Cadeautip</a>
     <a href="#contact" onclick="closeMenu()">Contact</a>
@@ -1091,13 +1081,30 @@
     </div>
   </div>
 
+  <!-- VERHAAL -->
+  <section class="story-section verhaal-section reveal" id="verhaal">
+    <div class="verhaal-inner">
+      <span class="section-tag">La nostra storia</span>
+      <h2 class="section-title">Ons<br><span class="italic">verhaal</span></h2>
+      <div class="verhaal-placeholder">
+        Ons verhaal begon met een swipe, groeide uit tot zeven jaar vol herinneringen,
+        lachen en groeien. Samen met ons gezin zijn we klaar voor een nieuw hoofdstuk:
+        voor altijd samen zijn.
+        <br><br>
+        Daarom nodigen wij jullie van harte uit om ons huwelijk met ons samen te vieren.
+        Deze bijzondere dag willen we heel graag samen met onze dierbaarste familie en
+        vrienden vieren. We hopen daarom dat jullie erbij zijn!
+      </div>
+    </div>
+  </section>
+
   <!-- PROGRAMMA — horizontale kaarten zonder dots -->
   <section class="story-section reveal" id="programma">
     <div class="program-intro">
       <span class="section-tag">Programma</span>
       <h2 class="section-title">Het verloop<br><span class="italic">van de dag</span></h2>
       <p class="section-lead">
-        Vier momenten om naar uit te kijken. Vanaf de plechtige "ja" tot de laatste dans.
+        Drie momenten om naar uit te kijken. Vanaf de plechtige "ja" tot de laatste dans.
       </p>
     </div>
     <div class="program-grid">
@@ -1107,14 +1114,9 @@
         <div class="description">Start van de ceremonie</div>
       </div>
       <div class="program-card">
-        <div class="time-badge">18:15</div>
-        <div class="activity">Cheers & Bites</div>
-        <div class="description">Receptie met aperitief</div>
-      </div>
-      <div class="program-card">
-        <div class="time-badge">19:00</div>
+        <div class="time-badge">18:30</div>
         <div class="activity">Food & Drinks</div>
-        <div class="description">Aan tafel — tijd om te smullen</div>
+        <div class="description">Walking dinner — geniet wandelend van heerlijke hapjes en drankjes</div>
       </div>
       <div class="program-card">
         <div class="time-badge">21:00</div>
@@ -1150,7 +1152,7 @@
         </div>
         <div class="dresscode-pill">
           <span class="label">Dresscode</span>
-          <span class="value">Kleurrijk maar chique ☀️</span>
+          <span class="value">Summer chique ☀️</span>
         </div>
       </div>
     </div>
@@ -1190,12 +1192,25 @@
       </div>
 
       <div class="field-group aanwezig-extra" style="display:none;">
+        <label class="field-label">Vanaf wanneer kom je erbij?</label>
+        <div class="radio-group">
+          <label class="radio-row">
+            <input type="radio" name="aankomst" value="ceremonie">
+            <span>Ik kom/Wij komen vanaf de start van de ceremonie om 17:00.</span>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="aankomst" value="feest">
+            <span>Ik kom/Wij komen bij de start van het feest om 18:30.</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field-group aanwezig-extra" style="display:none;">
         <label class="field-label" for="volwassenen">Met hoeveel komen jullie?</label>
         <div class="number-row">
           <span class="num-label">Aantal volwassenen</span>
           <input type="number" id="volwassenen" name="aantal_volwassenen" min="1" max="10" value="1">
         </div>
-        <p class="helper-text">Kinderen vertrekken na de receptie en hoeven niet meegerekend te worden.</p>
       </div>
 
       <div class="field-group aanwezig-extra" style="display:none;">
@@ -1207,11 +1222,12 @@
       <div class="field-group aanwezig-extra" style="display:none;">
         <label class="field-label">Drankvoorkeur</label>
         <div class="checkbox-group">
+          <label class="checkbox-row"><input type="checkbox" name="drank[]" value="cocktail_mocktail"><span>Cocktail/Mocktail</span></label>
           <label class="checkbox-row"><input type="checkbox" name="drank[]" value="witte_wijn"><span>Witte wijn</span></label>
           <label class="checkbox-row"><input type="checkbox" name="drank[]" value="rose"><span>Rosé</span></label>
           <label class="checkbox-row"><input type="checkbox" name="drank[]" value="rode_wijn"><span>Rode wijn</span></label>
           <label class="checkbox-row"><input type="checkbox" name="drank[]" value="bier"><span>Bier</span></label>
-          <label class="checkbox-row"><input type="checkbox" name="drank[]" value="frisdrank"><span>Frisdrank / geen alcohol</span></label>
+          <label class="checkbox-row"><input type="checkbox" name="drank[]" value="geen_alcohol"><span>Geen alcohol</span></label>
         </div>
         <p class="helper-text">Meerdere mogelijk.</p>
       </div>
@@ -1236,19 +1252,6 @@
 
       <button type="submit" class="submit-btn">Bevestigen</button>
     </form>
-  </section>
-
-  <!-- VERHAAL -->
-  <section class="story-section verhaal-section reveal" id="verhaal">
-    <div class="verhaal-inner">
-      <span class="section-tag">La nostra storia</span>
-      <h2 class="section-title">Ons<br><span class="italic">verhaal</span></h2>
-      <div class="verhaal-placeholder">
-        Hier komt binnenkort ons verhaal. Hoe we elkaar leerden kennen,
-        de mooie momenten die ons hier brachten, en waarom we wisten dat het voor altijd is.
-        <em>Wordt vervolgd</em>
-      </div>
-    </div>
   </section>
 
   <!-- FOTOGALERIJ -->
