@@ -59,11 +59,12 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: transparent;
+      background: var(--paper);
       border: 2px solid var(--olive);
       cursor: pointer;
       transition: all 0.3s ease;
       position: relative;
+      box-shadow: 0 0 0 3px rgba(255, 249, 236, 0.5);
     }
     .side-nav a::before {
       content: attr(data-label);
@@ -80,6 +81,11 @@
       pointer-events: none;
       transition: opacity 0.3s ease;
       letter-spacing: 0.05em;
+      background: var(--paper);
+      padding: 0.4rem 0.9rem;
+      border-radius: 3px;
+      box-shadow: 0 4px 15px var(--shadow);
+      border-left: 2px solid var(--citron);
     }
     .side-nav a:hover {
       background: var(--citron);
@@ -671,6 +677,7 @@
     .verhaal-section {
       background: var(--paper-warm);
       max-width: none;
+      padding-top: 11rem;
     }
     .verhaal-inner {
       max-width: 800px;
@@ -992,7 +999,8 @@
     }
     @media (max-width: 500px) {
       .program-grid { grid-template-columns: 1fr; }
-      .verhaal-section, .cadeau-section { padding: 4rem 1.5rem; }
+      .cadeau-section { padding: 4rem 1.5rem; }
+      .verhaal-section { padding: 7rem 1.5rem 4rem; }
     }
   </style>
 </head>
